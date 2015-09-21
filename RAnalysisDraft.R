@@ -27,6 +27,10 @@ activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", header = 
 unlink(connection)
 
 
+##Rename features_labels to remove spaces and dashes
+features_labels$V2 <- gsub("-", "_", features_labels$V2)
+features_labels$V2 <- gsub(",", "_", features_labels$V2)
+
 ##Add features as header of the test_x and train_x data
 colnames(test_x) <-features_labels$V2
 colnames(train_x) <-features_labels$V2
@@ -46,7 +50,24 @@ colnames(activity_train) <- "Activity"
 test_plus_activity_plus_subject <- cbind(test_x, activity_test, subject_test)
 train_plus_activty_plus_subject <- cbind(train_x, activity_train, subject_train)
 
-#Activity will be renamed based on the matching number value of the activity_labels data. Similar to an excel VLookUP?
+
+##Change data in the Activity column from a number to a name, would like to do a for loop to cover dynamic values
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==1] <- "Walking"
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==2] <- "Walking_Upstairs"
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==3] <- "Walking_Downstairs"
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==4] <- "Sitting"
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==5] <- "Standing"
+test_plus_activity_plus_subject$Activity[test_plus_activity_plus_subject$Activity==6] <- "Laying"
+
+##Same thing above but for train data
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==1] <- "Walking"
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==2] <- "Walking_Upstairs"
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==3] <- "Walking_Downstairs"
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==4] <- "Sitting"
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==5] <- "Standing"
+train_plus_activity_plus_subject$Activity[train_plus_activity_plus_subject$Activity==6] <- "Laying"
+##unique(test_plus_activity_plus_subject$Activity) should show the text values above and nothing else
+
 
 ##Test and Train will need to be merged using rbind. After that initial merge, we will need to find the columns
 ##with -mean or -std in the name. Then subset based on column names with  mean or std
