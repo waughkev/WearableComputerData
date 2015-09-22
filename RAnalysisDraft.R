@@ -27,9 +27,25 @@ activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt", header = 
 unlink(connection)
 
 
-##Rename features_labels to remove spaces and dashes
-features_labels$V2 <- gsub("-", "_", features_labels$V2)
+##Rename features_labels to remove commas and dashes, first three will cover X,Y, and Z axis
+features_labels$V2 <- gsub("-X", "_X_Axis", features_labels$V2)
+features_labels$V2 <- gsub("-Y", "_Y_Axis", features_labels$V2)
+features_labels$V2 <- gsub("-Z", "_Z_Axis", features_labels$V2)
+##Come back to this one, after all the changing it might not be needed
+##features_labels$V2 <- gsub("-", "_", features_labels$V2)
 features_labels$V2 <- gsub(",", "_", features_labels$V2)
+
+##Determine feature_labels that start with t and change label name to include time
+
+##Determine feature_labels that start with f and change label to include frequency
+
+##Determine feature_labels that contain "Acc" and change to "_Accelerometer"
+features_labels$V2 <- gsub("Acc-", "_Acceleromter", features_labels$V2)
+
+##Determine feature_labels that contain Gyro and change to "Gyrometer"
+features_labels$V2 <- gsub("Gyro-", "_Gyrometer_", features_labels$V2)
+
+##Change mean and standard deviation abbreviations as well.
 
 ##Add features as header of the test_x and train_x data
 colnames(test_x) <-features_labels$V2

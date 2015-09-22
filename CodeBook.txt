@@ -1,0 +1,28 @@
+Code Book for Wearable Computer Project
+
+Still in progress, check back later!
+
+Will contain:
+
+What the time and Frequency fields mean
+
+Aspect of X, Y, and Z axis
+
+Activity fields and what they mean
+
+Subject field and what it means
+
+Starting
+
+Subject
+	-An integer numbered 1 - 30. Used to signify the subject id of the subject whose data was recorded
+
+Activity
+	-String, will contain one of 6 values:
+		-Walking
+		-Walking_Upstairs
+		-Walking_Downstairs
+		-Sitting
+		-Standing
+		-Laying
+	Used to determine activity to data recorded.
