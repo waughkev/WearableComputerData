@@ -101,8 +101,8 @@ train_plus_activity_plus_subject$Activity_Performed[train_plus_activity_plus_sub
 complete_data <- rbind(test_plus_activity_plus_subject, train_plus_activity_plus_subject)
 
 ##Variables for Activity and SubjectID respectively
-Final_Activity <- complete_data$Activity_Performed
-Final_Subject <- complete_data$Subject_ID
+Activity_Performed <- complete_data$Activity_Performed
+Subject_ID <- complete_data$Subject_ID
 ##After that initial merge, we will need to find the columns with _Mean_ or _Standard_Deviation_
 ##in the name. Then subset based on on those parameters.
 
@@ -113,7 +113,7 @@ std_data <- complete_data[, grepl("_Standard_Deviation_" , names(complete_data))
 ##Determine if each measurement has a mean or standard deviation
 
 ##Combination of the two above tables and the final two columns of the complete data table
-final_data <- cbind(mean_data, std_data, Final_Activity, Final_Subject)
+final_data <- cbind(mean_data, std_data, Activity_Performed, Subject_ID)
 
 
 
