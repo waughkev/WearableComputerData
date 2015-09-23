@@ -107,13 +107,49 @@ Subject_ID <- complete_data$Subject_ID
 ##in the name. Then subset based on on those parameters.
 
 ##This will grab the columns with "_Mean_ in the column name
-mean_data <- complete_data[, grepl("_Mean_" , colname(complete_data))]
+mean_data <- complete_data[, grepl("_Mean_" , colnames(complete_data))]
 ##This will grab the columns with "_Standard_Deviation_" in the column name
-std_data <- complete_data[, grepl("_Standard_Deviation_" , colname(complete_data))]
+std_data <- complete_data[, grepl("_Standard_Deviation_" , colnames(complete_data))]
 ##Determine if each measurement has a mean or standard deviation
 
 ##Combination of the two above tables and the final two columns of the complete data table
 final_data <- cbind(mean_data, std_data, Activity_Performed, Subject_ID)
 
+##As of this point, we have a table of means and standard deviations of each observation, along with activity and subject
+##It is still unknown if the data if usefull or not.
 
 
+##final_data  is the second to last data set, as it meets Step 4 of the project
+##of the 70 variables, the first 68 need to have averages for each activity, and each subject
+##This might require a couple of loops, some renaming of columns
+
+##Lets see what we have first for Activity_Performed "Standing" and Subject_ID equal to 15
+Prior_ColMeans_Table <- final_data[final_data$Activity_Performed %in% "Standing" & final_data$Subject_ID==15,]
+##So this needs to be done for each activity and subject
+##Basic idea: 1) Run loop for each activity and subject
+##2)In each loop, get colmeans of columns 1 to 68 (all but the last two)
+##3)Save this as a seperate piece of data
+##4)RBind it to the tidy_data frame that we will use for the end
+
+##tidy_data, which will be the final dat set
+tidy_data <- data.frame()
+
+##To get things sorted, we will need a matrix with the six activities
+Activities <- c("Walking","Walking_Upstairs", "Walking_Downstairs", "Sitting", "Standing", "Laying")
+##Also, a mtrix with  30 numbers fomr 1 - 30 for subjects
+Subjects <- c(1:30)
+
+for (s in Subjects) {
+  for (i in Activities) {
+    Prior_ColMeans_Table <- final_data[final_data$Activity_Performed %in% i & final_data$Subject_ID==s,]
+    ColMeans_Table <- rbind(colMeans(Prior_ColMeans_Table[,1:68]))
+    no_subject_data <- cbind(ColMeans_Table, i, s)
+    tidy_data <- rbind(tidy_data, no_subject_data)
+  }
+}
+
+##Copy names of columns from final_data to tidy_data
+colnames(tidy_data) <- colnames(final_data)
+
+##Save the file as a .csv for now
+save(tidy_data, file="Tidy_Data.csv")
