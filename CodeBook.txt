@@ -1,18 +1,21 @@
-Code Book for Wearable Computer Project
+Wearable Computer Data Project Codebook
 
-Still in progress, check back later!
+Each variable will have certain characteristics to it's label, below is how many of the variables will be broken down:
 
-Will contain:
+	[Time/Frequency]_[Body/Gravity]_[Accelerometer/Gyrometer]_[Mean/Standard_Deviation]_Function_Results_[X/Y/Z]_Axis
 
-What the time and Frequency fields mean
-
-Aspect of X, Y, and Z axis
-
-Activity fields and what they mean
-
-Subject field and what it means
-
-Starting
+Each section below contains the variables for each subsection ([]) of the variable label above
+	[Time/Frequency]
+		-Denotes whether the variable is covering time or frequency
+	[Body/Gravity]
+		-Denotes whether the measurement was observin body movement or gravitational effect
+	[Accelereometer/Gyrometer]
+		-Describes whether the device's accelereometer or gyroscope recorded the observation
+		-This subsection can also contain Jerk signals or Magnitude, denoted by Jerk or Mag
+	[Mean/Standard_Deviation]
+		-States function uses in the observation
+	[X/Y/Z]
+		-Displays axis the observation was taken
 
 Subject
 	-An integer numbered 1 - 30. Used to signify the subject id of the subject whose data was recorded
@@ -26,3 +29,4 @@ Activity
 		-Standing
 		-Laying
 	Used to determine activity to data recorded.
+
