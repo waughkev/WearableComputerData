@@ -152,4 +152,4 @@ for (s in Subjects) {
 colnames(tidy_data) <- colnames(final_data)
 
 ##Save the file as a .csv for now
-save(tidy_data, file="Tidy_Data.csv")
+write.csv(tidy_data, file="Tidy_Data.csv")
