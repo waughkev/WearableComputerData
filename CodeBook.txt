@@ -13,7 +13,7 @@ Each section below contains the variables for each subsection ([]) of the variab
 		-Describes whether the device's accelereometer or gyroscope recorded the observation
 		-This subsection can also contain Jerk signals or Magnitude, denoted by Jerk or Mag
 	[Mean/Standard_Deviation]
-		-States function uses in the observation
+		-States function uses in the observation, which can be the mean or the standard deviation
 	[X/Y/Z]
 		-Displays axis the observation was taken
 
@@ -29,4 +29,7 @@ Activity
 		-Standing
 		-Laying
 	Used to determine activity to data recorded.
+
+Summary of Data
+	Each row of data will cover over 60 variables of measurement, sorted by subject and activity. The subject and activity will be the final two rows.
 

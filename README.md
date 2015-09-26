@@ -1,9 +1,13 @@
 # WearableComputer Data Project
-This repository will cover the Coursera Getting and Cleaning Data Course Project. This data will contain a collection of variables from the UCI Human Activity Study.  In  particular, this project will look into certain aspects of the data given, notably the means and standard deviations of the recordings. The recordings cover the accelerometer and gyroscope of a Samsung Galaxy II Smartphone attached to the waist of 30 subjects. The accelerometer and gyroscope created records for specific actions such as movement of the individual during a certain task.
+This repository is used with the Coursera Getting and Cleaning Data Course Project. This data will contain a collection of variables from the UCI Human Activity Study. In particular, this project will look into certain aspects of the data given, notably the means and standard deviations of the recordings. The recordings cover the accelerometer and gyroscope of a Samsung Galaxy II Smartphone attached to the waist of 30 subjects. The accelerometer and gyroscope created records for specific actions such as movement of the individual during a certain task.
 
 
 ##Desired Outcome
 When completed, this data will contain the averages of the mean and standard deviation functions recorded, grouped by Axis and device used. Each average will be grouped based on the activity performed and the subject it was performed by. This aspect should be able to be used to determine correlation between an activity and the readings of the Accelerometer and Gyroscope.
+
+
+##Actions Taken
+The main brunt of the work is covered under the RAnalysis.R file. This file will take the entire dataset and merge the training and test data sets, followed by executing averages for the multiple observations and grouping them by activity performed and subject who performed the activity. This data is saved in the Tidy_Data.csv file
 
 ##Project Contents
 - RAnalysis.R script that takes data from the UCI Human Activity Study and converts the data into the Tidy_Data.csv file for further analysis
