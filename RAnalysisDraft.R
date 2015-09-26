@@ -107,9 +107,9 @@ Subject_ID <- complete_data$Subject_ID
 ##in the name. Then subset based on on those parameters.
 
 ##This will grab the columns with "_Mean_ in the column name
-mean_data <- complete_data[, grepl("_Mean_" , colnames(complete_data))]
+mean_data <- complete_data[, grepl("_Mean_Function" , colnames(complete_data))]
 ##This will grab the columns with "_Standard_Deviation_" in the column name
-std_data <- complete_data[, grepl("_Standard_Deviation_" , colnames(complete_data))]
+std_data <- complete_data[, grepl("_Standard_Deviation_Function" , colnames(complete_data))]
 ##Determine if each measurement has a mean or standard deviation
 
 ##Combination of the two above tables and the final two columns of the complete data table
