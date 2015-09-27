@@ -122,9 +122,6 @@ final_data <- cbind(mean_data, std_data, Activity_Performed, Subject_ID)
 ##final_data  is the second to last data set, as it meets Step 4 of the project
 ##of the 70 variables, the first 68 need to have averages for each activity, and each subject
 ##This might require a couple of loops, some renaming of columns
-
-##Lets see what we have first for Activity_Performed "Standing" and Subject_ID equal to 15
-Prior_ColMeans_Table <- final_data[final_data$Activity_Performed %in% "Standing" & final_data$Subject_ID==15,]
 ##So this needs to be done for each activity and subject
 ##Basic idea: 1) Run loop for each activity and subject
 ##2)In each loop, get colmeans of columns 1 to 68 (all but the last two)
@@ -139,9 +136,11 @@ Activities <- c("Walking","Walking_Upstairs", "Walking_Downstairs", "Sitting", "
 ##Also, a mtrix with  30 numbers fomr 1 - 30 for subjects
 Subjects <- c(1:30)
 
+##this for loop will cover getting averages of all relevant data per activity and per subject
 for (s in Subjects) {
   for (i in Activities) {
     Prior_ColMeans_Table <- final_data[final_data$Activity_Performed %in% i & final_data$Subject_ID==s,]
+    Prior_ColMeans_Table <- as.numeric(Prior_ColMeans_Table)
     ColMeans_Table <- rbind(colMeans(Prior_ColMeans_Table[,1:68]))
     no_subject_data <- cbind(ColMeans_Table, i, s)
     tidy_data <- rbind(tidy_data, no_subject_data)
@@ -151,5 +150,5 @@ for (s in Subjects) {
 ##Copy names of columns from final_data to tidy_data
 colnames(tidy_data) <- colnames(final_data)
 
-##Save the file as a .csv for now
-write.csv(tidy_data, file="Tidy_Data.csv")
+##Save the file as a .txt
+write.table(tidy_data, file="Tidy_Data.txt" row.name=FALSE)
