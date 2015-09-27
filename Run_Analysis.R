@@ -140,8 +140,7 @@ Subjects <- c(1:30)
 for (s in Subjects) {
   for (i in Activities) {
     Prior_ColMeans_Table <- final_data[final_data$Activity_Performed %in% i & final_data$Subject_ID==s,]
-    Prior_ColMeans_Table <- as.numeric(Prior_ColMeans_Table)
-    ColMeans_Table <- rbind(colMeans(Prior_ColMeans_Table[,1:68]))
+    ColMeans_Table <- rbind(colMeans(Prior_ColMeans_Table[,1:66]))
     no_subject_data <- cbind(ColMeans_Table, i, s)
     tidy_data <- rbind(tidy_data, no_subject_data)
   }
@@ -151,4 +150,4 @@ for (s in Subjects) {
 colnames(tidy_data) <- colnames(final_data)
 
 ##Save the file as a .txt
-write.table(tidy_data, file="Tidy_Data.txt" row.name=FALSE)
+write.table(tidy_data, file="Tidy_Data.txt", row.names=FALSE)
